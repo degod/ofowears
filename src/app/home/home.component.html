@@ -1,0 +1,183 @@
+
+  <!--header-->
+  <app-header></app-header>
+  <!--/header-->
+
+  <section id="slider">
+    <div class="container" *ngIf="slider.length > 0">
+      <div class="row">
+        <div class="col-sm-12">
+          <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#slider-carousel" [attr.data-slide-to]="i" *ngFor="let s of slider;let i = index;let firstPoint = first" [ngClass]="{active: firstPoint}">
+              </li>
+            </ol>
+            
+            <div class="carousel-inner">
+              <div class="item" [ngClass]="{active: fImg}" *ngFor="let s of slider;let fImg = first;">
+                <div class="col-sm-6">
+                  <h1> {{ s.lrg }} </h1>
+                  <h2> {{ s.sml }} </h2>
+                  <button type="button" class="btn btn-default get" routerLink="/products">Get it now</button>
+                </div>
+                <div class="col-sm-6">
+                  <div style="height:50vh;width:100%;background-size:cover;background-repeat:no-repeat;background-position:center;" [ngStyle]="{'background-image':'url('+imgUrl(s.img)+')'}">
+                  </div>
+                  <!-- <img src="{{ imgUrl(s.img) }}" class="girl img-responsive" alt="" /> -->
+                  <!-- <img src="assets/images/home/pricing.png"  class="pricing" alt="" /> -->
+                </div>
+              </div>
+              
+            </div>
+            
+            <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+              <i class="fa fa-angle-right"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div *ngIf="slider.length < 1">
+      <h2 style="top:40vh;padding:10%" align="center" valign="center">Loading...</h2>
+    </div>
+  </section>
+  <!--/slider-->
+  
+  <section>
+    <div class="container">
+      <div class="row">
+
+        <!--  Side Categories   -->
+        <app-categories></app-categories>
+        <!--  Side Categories   -->
+        
+        <div class="col-sm-9 padding-right">
+          <div class="features_items"><!--features_items-->
+            <h2 class="title text-center">Features Items</h2>
+
+            <div class="col-sm-4" *ngFor="let b of all;">
+              <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                      <img src="{{imgUrl(b.p_img_a)}}" style="height:40vh"/>
+                      <h2>{{ b.p_bargain | currency : "₦" }}</h2>
+                      <p>{{ b.p_name }}</p>
+                      <a routerLink="/products" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                    </div>
+                    <div class="product-overlay">
+                      <div class="overlay-content">
+                        <h2>{{ b.p_bargain | currency : "₦" }}</h2>
+                        <p>{{ b.p_name }}</p>
+                        <a routerLink="/products" class="btn btn-default add-to-cart">
+                          <i class="fa fa-shopping-cart"></i>Add to cart
+                        </a>
+                      </div>
+                    </div>
+                </div>
+                <div class="choose">
+                  <ul class="nav nav-pills nav-justified">
+                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="!all">
+              <h2 style="top:40vh;padding:5%" align="center" valign="center">Loading...</h2>
+            </div>
+          </div><!--features_items-->
+          
+          <div class="category-tab"><!--category-tab-->
+            <div class="col-sm-12">
+              <ul class="nav nav-tabs">
+                <li *ngIf="!categories[0].content" class="active">
+                  <a href="#none" data-toggle="tab">Loading</a>
+                </li>
+                <li *ngFor="let c of categories; let fCat = first" [ngClass]="{active: fCat}">
+                  <a href="#{{ c.id }}" data-toggle="tab">{{ c.title }}</a>
+                </li>
+              </ul>
+            </div>
+            <div class="tab-content">
+              <div class="tab-pane fade in" id="{{ c.id }}" *ngFor="let c of categories; let fCat = first" [ngClass]="{active: fCat}">
+                <div class="col-sm-3" *ngFor="let co of c.content">
+                  <div class="product-image-wrapper">
+                    <div class="single-products">
+                      <div class="productinfo text-center">
+                        <img src="{{ imgUrl(co.p_img_b) }}" style="height:30vh"/>
+                        <h2>{{ co.p_bargain | currency : "₦" }}</h2>
+                        <p>{{ co.p_name }}</p>
+                        <a routerLink="/product/{{co.p_sku}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Product</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="categories[0].content.length < 1">
+              <h4 style="top:40vh;padding:5%" align="center" valign="center">Loading...</h4>
+            </div>
+          </div><!--/category-tab-->
+          
+          <div class="recommended_items"><!--recommended_items-->
+            <h2 class="title text-center">recommended items</h2>
+            
+            <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="item active"> 
+                  <div class="col-sm-4" *ngFor="let r of recommended1">
+                    <div class="product-image-wrapper">
+                      <div class="single-products">
+                        <div class="productinfo text-center">
+                          <img src="{{ imgUrl(r.p_img_c) }}" style="height:30vh"/>
+                          <h2>{{ r.p_bargain | currency : "₦" }}</h2>
+                          <p>{{ r.p_name }}</p>
+                          <a routerLink="/product/{{r.p_sku}}" class="btn btn-default add-to-cart">
+                            <i class="fa fa-shopping-cart"></i>View Product
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="col-sm-4" *ngFor="let r of recommended2">
+                    <div class="product-image-wrapper">
+                      <div class="single-products">
+                        <div class="productinfo text-center">
+                          <img src="{{ imgUrl(r.p_img_c) }}" style="height:30vh"/>
+                          <h2>{{ r.p_bargain | currency : "₦" }}</h2>
+                          <p>{{ r.p_name }}</p>
+                          <a routerLink="/product/{{r.p_sku}}" class="btn btn-default add-to-cart">
+                            <i class="fa fa-shopping-cart"></i>View Product
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+               <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+                </a>
+                <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+                </a>      
+            </div>
+          </div><!--/recommended_items-->
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!--Footer-->
+  <app-footer></app-footer>
+  <!--/Footer-->

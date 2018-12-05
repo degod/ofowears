@@ -1,0 +1,79 @@
+
+	<!--header-->
+	<app-header></app-header>
+	<!--/header-->
+
+  
+	<!-- <section id="advertisement">
+		<div class="container">
+			<img src="assets/images/shop/advertisement.jpg" alt="" />
+		</div>
+	</section> -->
+
+	<section>
+		<div class="container">
+			<div class="row">
+
+		        <!--  Side Categories   -->
+		        <app-categories></app-categories>
+		        <!--  Side Categories   -->
+				
+				<div class="col-sm-9 padding-right">
+					<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">Features Items for {{ category }}</h2>
+						<div class="row">
+				            <div class="col-sm-4" *ngFor="let b of all;">
+				              <div class="product-image-wrapper">
+				                <div class="single-products">
+				                    <div class="productinfo text-center">
+				                      <img src="{{imgUrl(b.p_img_a)}}" style="height:40vh"/>
+				                      <h2>{{ b.p_bargain | currency : "₦" }}</h2>
+				                      <p>{{ b.p_name }}</p>
+				                      <a routerLink="/products" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+				                    </div>
+				                    <div class="product-overlay">
+				                      <div class="overlay-content">
+				                        <h2>{{ b.p_bargain | currency : "₦" }}</h2>
+				                        <p>{{ b.p_name }}</p>
+				                        <a routerLink="/products" class="btn btn-default add-to-cart">
+				                          <i class="fa fa-shopping-cart"></i>Add to cart
+				                        </a>
+				                      </div>
+				                    </div>
+				                </div>
+				                <div class="choose">
+				                  <ul class="nav nav-pills nav-justified">
+				                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+				                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+				                  </ul>
+				                </div>
+				              </div>
+				            </div>
+
+				            <div *ngIf="!all">
+				              <h2 style="top:40vh;padding:5%" align="center" valign="center">Loading...</h2>
+				            </div>
+				        </div>
+						
+						<div class="row">
+							<ul class="pagination">
+								<li class="active">
+									<a routerLink="/products/{{category}}/0">1</a>
+								</li>
+								<li (click)="changeAct(2)">
+									<a href="javascript::void">2</a>
+								</li>
+								<li><a routerLink="/products/{{category}}/4">3</a></li>
+								<li><a routerLink="/products/{{category}}/6">&raquo;</a></li>
+							</ul>
+						</div>
+					</div><!--features_items-->
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!--Footer-->
+	<app-footer></app-footer>
+	<!--/Footer-->
