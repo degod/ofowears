@@ -1,6 +1,6 @@
 # Ofowears
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.1.
+This project was built using using `Angular 6` and backend API was made in `PHP`. It is basically a project for `Fashion wears for kids`. Lest I forget, credits to `Themeum` for the excellent template provided for this awesome project.
 
 ## Development server
 
