@@ -10,17 +10,29 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 })
 export class ProductDetailsComponent implements OnInit {
 	sku: any;
+	tag: any;
 	details: any;
+	recommended1: any;
+	recommended2: any;
+	tags1: any;
+	tags2: any;
+	tags3: any;
+	review: any;
+	loading = false;
 
 	constructor(private web: WebsiteService, private spinner: NgxSpinnerService,
-				private route: ActivatedRoute, private router: Router) { }
+				private route: ActivatedRoute, private router: Router) { 
+		this.recommend();
+		this.recommend();
+	}
 
 	ngOnInit() {
+		this.details = null;
 		this.router.events.subscribe((evt) => {
             if (!(evt instanceof NavigationEnd)) {
                 return;
             }
-            window.scrollTo(0, 0)
+            window.scrollTo(0, 0);
         });
 		this.route.params.subscribe(routeParams => {
 			this.sku = routeParams.sku;
@@ -32,9 +44,12 @@ export class ProductDetailsComponent implements OnInit {
 	}
 
 	productDetails(sku){
+		this.spinner.show();
 		this.web.getProduct("'"+sku+"'").subscribe(
 			(res2: any = {status: "", message: {data: []}})  => {
 				if(res2 != ""){
+					this.spinner.hide();
+					this.loading = true;
 					let resp = {
 						statusCode: null,
 						status: null,
@@ -43,7 +58,12 @@ export class ProductDetailsComponent implements OnInit {
 					resp = JSON.parse(res2+"");
 					if(resp.statusCode == "00"){
 						this.details = resp.message.data[0];
-						console.log(this.details);
+						this.tag = this.details.p_tags;
+						this.review = this.details.p_review;
+						if(this.review == null || this.review == undefined){
+							this.review = false;
+						}
+						this.tagged(this.sku);
 					}else{
 						setTimeout(()=>{
 							this.productDetails(sku);
@@ -54,6 +74,70 @@ export class ProductDetailsComponent implements OnInit {
 				console.log(err2);
 			}
 		);
+	}
+
+	tagged(sku){
+		this.web.getTagProducts("'"+sku+"'", this.tag).subscribe(
+			(res2: any = {status: "", message: {data: []}})  => {
+				if(res2 != ""){
+					let resp = {
+						statusCode: null,
+						status: null,
+						message: null
+					};
+					resp = JSON.parse(res2+"");
+					if(resp.statusCode == "00"){
+						this.tags1 = this.arrayLimit(this.shuffle(resp.message.data), 3);
+						this.tags2 = this.arrayLimit(this.shuffle(resp.message.data), 3);
+						this.tags3 = this.arrayLimit(this.shuffle(resp.message.data), 3);
+						// console.log("Tags:",this.tags1);
+					}else{
+						setTimeout(()=>{
+							this.tagged(sku);
+						}, 60000);
+					}
+				}
+			},err2 => {
+				console.log(err2);
+			}
+		);
+	}
+
+	recommend(){
+		this.web.getProducts("'ALL'").subscribe(
+			(res2: any = {status: "", message: {data: []}})  => {
+				if(res2 != ""){
+					let resp = {
+						statusCode: null,
+						status: null,
+						message: null
+					};
+					resp = JSON.parse(res2+"");
+					if(resp.statusCode == "00"){
+						this.recommended1 = this.arrayLimit(this.shuffle(resp.message.data), 3);
+						this.recommended2 = this.arrayLimit(this.shuffle(resp.message.data), 3);
+					}else{
+						setTimeout(()=>{
+							this.recommend();
+						}, 60000);
+					}
+				}
+			},err2 => {
+				console.log(err2);
+			}
+		);
+	}
+
+	goTo(sku){
+		this.details = null;
+		this.recommended1 = null;
+		this.recommended2 = null;
+		this.tags1 = null;
+		this.tags2 = null;
+		this.tags3 = null;
+		this.review = null;
+		this.loading = false;
+		this.router.navigate(["/product",sku]);
 	}
 
 	imgUrl(url){

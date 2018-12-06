@@ -10,7 +10,7 @@
 		</div>
 	</section> -->
 
-	<section>
+	<section *ngIf="loading">
 		<div class="container">
 			<div class="row">
 
@@ -29,14 +29,16 @@
 				                      <img src="{{imgUrl(b.p_img_a)}}" style="height:40vh"/>
 				                      <h2>{{ b.p_bargain | currency : "₦" }}</h2>
 				                      <p>{{ b.p_name }}</p>
-				                      <a routerLink="/products" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+				                      <a routerLink="/product/{{b.p_sku}}" class="btn btn-default add-to-cart">
+				                      	<i class="fa fa-shopping-cart"></i>Add to cart
+				                      </a>
 				                    </div>
 				                    <div class="product-overlay">
 				                      <div class="overlay-content">
 				                        <h2>{{ b.p_bargain | currency : "₦" }}</h2>
 				                        <p>{{ b.p_name }}</p>
-				                        <a routerLink="/products" class="btn btn-default add-to-cart">
-				                          <i class="fa fa-shopping-cart"></i>Add to cart
+				                        <a routerLink="/product/{{b.p_sku}}" class="btn btn-default add-to-cart">
+				                          <i class="fa fa-shopping-cart"></i>View Product
 				                        </a>
 				                      </div>
 				                    </div>
@@ -73,6 +75,9 @@
 		</div>
 	</section>
 
+  <div *ngIf="!loading">
+    <h1 style="top:50vh;padding:5%" align="center" valign="center">Loading...</h1>
+  </div>
 
 	<!--Footer-->
 	<app-footer></app-footer>

@@ -59,11 +59,10 @@ export class HomeComponent implements OnInit {
 	getSlider(){
 		this.spinner.show();
 		this.web.getSlider().subscribe((res: any = {status: "", message: {data: []}}) => {
-	            // console.log(JSON.parse(res));
 				this.slider = JSON.parse(res+"");
 				this.slider = this.slider['message'].data;
-				// console.log(this.slider);
 				this.spinner.hide();
+				this.loading = true;
 	        },
 	        err => {
 	            console.log(err.message);

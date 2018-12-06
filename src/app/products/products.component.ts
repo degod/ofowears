@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit {
     }
     all: any;
     offset: any;
+    loading = false;
 
 	constructor(private web: WebsiteService, private spinner: NgxSpinnerService,
 				private route: ActivatedRoute, private router: Router) { 
@@ -48,6 +49,7 @@ export class ProductsComponent implements OnInit {
 			(res2: any = {status: "", message: {data: []}})  => {
 				if(res2 != ""){
 					this.spinner.hide();
+					this.loading = true;
 					let resp = {
 						statusCode: null,
 						status: null,

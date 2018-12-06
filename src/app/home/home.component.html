@@ -3,7 +3,7 @@
   <app-header></app-header>
   <!--/header-->
 
-  <section id="slider">
+  <section id="slider" *ngIf="loading">
     <div class="container" *ngIf="slider.length > 0">
       <div class="row">
         <div class="col-sm-12">
@@ -47,7 +47,7 @@
   </section>
   <!--/slider-->
   
-  <section>
+  <section *ngIf="loading">
     <div class="container">
       <div class="row">
 
@@ -66,14 +66,16 @@
                       <img src="{{imgUrl(b.p_img_a)}}" style="height:40vh"/>
                       <h2>{{ b.p_bargain | currency : "₦" }}</h2>
                       <p>{{ b.p_name }}</p>
-                      <a routerLink="/products" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                      <a routerLink="/product/{{b.p_sku}}" class="btn btn-default add-to-cart">
+                        <i class="fa fa-shopping-cart"></i>Add to cart
+                      </a>
                     </div>
                     <div class="product-overlay">
                       <div class="overlay-content">
                         <h2>{{ b.p_bargain | currency : "₦" }}</h2>
                         <p>{{ b.p_name }}</p>
-                        <a routerLink="/products" class="btn btn-default add-to-cart">
-                          <i class="fa fa-shopping-cart"></i>Add to cart
+                        <a routerLink="/product/{{b.p_sku}}" class="btn btn-default add-to-cart">
+                          <i class="fa fa-shopping-cart"></i>View Product
                         </a>
                       </div>
                     </div>
@@ -127,8 +129,7 @@
           
           <div class="recommended_items"><!--recommended_items-->
             <h2 class="title text-center">recommended items</h2>
-            
-            <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+            <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel" *ngIf="recommended1">
               <div class="carousel-inner">
                 <div class="item active"> 
                   <div class="col-sm-4" *ngFor="let r of recommended1">
@@ -170,6 +171,11 @@
                 <i class="fa fa-angle-right"></i>
                 </a>      
             </div>
+
+
+            <div *ngIf="!recommended1">
+              <h2 style="top:40vh;padding:5%" align="center" valign="center">Loading...</h2>
+            </div>
           </div><!--/recommended_items-->
           
         </div>
@@ -177,6 +183,10 @@
     </div>
   </section>
 
+
+  <div *ngIf="!loading">
+    <h1 style="top:50vh;padding:5%" align="center" valign="center">Loading...</h1>
+  </div>
 
   <!--Footer-->
   <app-footer></app-footer>

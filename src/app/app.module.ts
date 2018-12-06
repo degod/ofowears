@@ -15,6 +15,7 @@ import { HeaderComponent } from './header/header.component';
 import { ProductDetailsComponent } from './product-details/product-details.component'
 
 import { WebsiteService } from './website.service';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { WebsiteService } from './website.service';
     CategoriesComponent,
     ProductsComponent,
     HeaderComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
