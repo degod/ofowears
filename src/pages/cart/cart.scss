@@ -1,0 +1,86 @@
+page-cart {
+	ion-item{
+		padding: 0px !important;
+		margin-top: -8px !important;
+	}
+	ion-item input{
+		width: 20%;
+		height: 25px;
+		border: 1px solid #ccc;
+		font-size: 12px;
+		text-align: center;
+		margin-top: -8px !important;
+	}
+	ion-item span{
+		font-size: 12px;
+	}
+	ion-item h6{
+		font-weight: bolder;
+		padding-top: 2px;
+		margin-top: 5px !important;
+		border-top: 1px solid #666;
+		text-align: right;
+	}
+	ion-item ion-icon{
+		font-size: 12px;
+		padding: 6px !important;
+		text-align: center !important;
+	}
+	ion-item .iconRight{
+		width: 12%;
+		background-color: #ccc !important;
+		border-radius: 0 3px 3px 0 !important;
+		margin: 0 0 0 -5px !important;
+	}
+	ion-item .iconLeft{
+		width: 12%;
+		background-color: #ccc !important;
+		border-radius: 3px 0 0 3px !important;
+		margin: 0 -5px 0 0 !important;
+	}
+	ion-row ion-col h5{
+		padding-top: 10px !important;
+	}
+	ion-row ion-col h5 span{
+		font-weight: 100 !important;
+		float: right !important;
+	}
+	ion-footer div{
+		height: 10vh;
+		background-color: #fff;
+		background-image: url(../assets/imgs/paystack.png);
+		background-size: contain !important;
+		background-position: center !important;
+		background-repeat: no-repeat !important;
+	}
+	marquee{
+		color: #ccc;
+		margin-top: 12px;
+	}
+	ion-row ion-col div select{
+		width: 95%;
+	}
+	ion-row ion-col div button{
+		border-radius: 20px !important;
+	}
+	ion-row ion-col div div ion-item input{
+		width: inherit;
+		height: inherit;
+		border: inherit;
+		font-size: inherit;
+		text-align: right;
+		margin-top: inherit;
+	}
+	ion-row ion-col div div span{
+		font-size: 10px;
+		color: red;
+		margin-bottom: 20px !important;
+	}
+	.h3Info{
+		text-align: center;
+		font-weight: lighter !important;
+		background-color: #f9e8b6;
+		border-radius: 3px;
+		padding: 10px;
+	}
+}

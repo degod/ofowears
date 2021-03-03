@@ -1,0 +1,100 @@
+<!--
+  Generated template for the ProductdetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+	<ion-fab top right>
+    	<button ion-fab mini color="wine" (click)="visitCart()">
+	      	<ion-icon name="ios-cart">
+				<span class="cartCount">{{cartLen}}</span>
+	      	</ion-icon>
+    	</button>
+	</ion-fab>
+  	<ion-navbar color="tertiary">
+    	<button ion-button menuToggle>
+      		<ion-icon name="menu"></ion-icon>
+    	</button>
+    	<ion-title>{{details.p_name}}</ion-title>
+  	</ion-navbar>
+	<ion-item>
+		<ion-input type="search" placeholder="Search for products..."></ion-input>
+		<ion-icon name="md-search" item-end></ion-icon>
+	</ion-item>
+</ion-header>
+
+
+<ion-content padding>
+	<ion-row>
+		<ion-col col-3>
+			<div class="thumbnails" [ngStyle]="{'background-image':'url('+ROOT+details.p_img_a+')'}" (click)="changeDisplay(ROOT+details.p_img_a)"></div>
+			<div class="thumbnails" [ngStyle]="{'background-image':'url('+ROOT+details.p_img_b+')'}" (click)="changeDisplay(ROOT+details.p_img_b)"></div>
+			<div class="thumbnails" [ngStyle]="{'background-image':'url('+ROOT+details.p_img_c+')'}" (click)="changeDisplay(ROOT+details.p_img_c)"></div>
+		</ion-col>
+		<ion-col col-9>
+			<div class="display" [ngStyle]="{'background-image':'url('+display+')'}"></div>
+		</ion-col>
+	</ion-row>
+	<ion-row>
+		<ion-col col-12 class="description">
+			<h3>{{details.p_name}}</h3>
+			<h3>{{details.p_bargain | currency : "₦"}}</h3>
+			<h6>{{details.p_s_desc}}</h6>
+		</ion-col>
+	</ion-row>
+	<ion-row>
+		<ion-col col-6>
+			<ion-item>
+				<ion-icon name="md-remove" icon-left class="iconLeft" (click)="removeQty()"></ion-icon>
+				<input type="number" [(ngModel)]="quantity" min="1" max="100"/>
+				<ion-icon name="md-add" icon-right class="iconRight" (click)="addQty()"></ion-icon>
+			</ion-item>
+		</ion-col>
+		<ion-col col-6>
+			<button ion-button block color="wine" (click)="add2cart(details)" [disabled]="quantity < 1">ADD TO CART</button>
+		</ion-col>
+	</ion-row>
+	<ion-row>
+		<ion-col col-12>
+			<button ion-button block color="wine" (click)="proceed2cart(details)" [disabled]="quantity < 1">PROCEED TO CHECKOUT</button>
+		</ion-col>
+	</ion-row>
+	<ion-row>
+		<ion-col col-4>
+			<span class="toTitle">SKU</span><br>
+			<span class="toTitle">Categories</span>
+		</ion-col>
+		<ion-col col-8>
+			<span class="toBody">{{details.p_sku}}</span><br>
+			<span class="toBody">{{details.p_tags}}</span>
+		</ion-col>
+	</ion-row>
+	<ion-row>
+		<ion-col col-12>
+			<ion-list>
+				<ion-item text-wrap (click)="toggleGroup(0)" [ngClass]="{active: isGroupShown(0)}">
+					<h2>
+						Description 
+						<ion-icon color="success" icon-right [name]="isGroupShown(0) ? 'md-remove' : 'md-add'"></ion-icon>
+					</h2>
+					<div *ngIf="isGroupShown(0)" [innerHTML]="nl2br(details.p_l_desc)"></div>
+				</ion-item>
+				<ion-item text-wrap (click)="toggleGroup(1)" [ngClass]="{active: isGroupShown(1)}">
+					<h2>
+						Additional Information 
+						<ion-icon color="success" icon-right [name]="isGroupShown(1) ? 'md-remove' : 'md-add'"></ion-icon>
+					</h2>
+					<div *ngIf="isGroupShown(1)" [innerHTML]="nl2br(details.p_add_info)"></div>
+				</ion-item>
+				<ion-item text-wrap (click)="toggleGroup(2)" [ngClass]="{active: isGroupShown(2)}">
+					<h2>
+						Reviews (0) 
+						<ion-icon color="success" icon-right [name]="isGroupShown(2) ? 'md-remove' : 'md-add'"></ion-icon>
+					</h2>
+					<div *ngIf="isGroupShown(2)">{{details.p_review}}</div>
+				</ion-item>
+			</ion-list>
+		</ion-col>
+	</ion-row>
+</ion-content>

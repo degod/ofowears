@@ -1,0 +1,43 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.ofowears.www"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.ofowears.www"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.ofowears.www"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.ofowears.www"
+    },
+    "com-sarriaroman-photoviewer": {
+      "PACKAGE_NAME": "com.ofowears.www"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.ofowears.www"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.ofowears.www"
+    },
+    "cordova-plugin-filepath": {
+      "PACKAGE_NAME": "com.ofowears.www"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.ofowears.www"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.ofowears.www"
+    }
+  }
+}

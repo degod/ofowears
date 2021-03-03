@@ -1,0 +1,20 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <div class="menuHead"></div>
+  </ion-header>
+
+  <ion-content style="background-color:#eb2e75">
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" 
+              style="background-color: transparent;color:#fff">
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+  <ion-footer>
+    <button ion-button block color="tertiary" (click)="admin()">Administrator</button>
+  </ion-footer>
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

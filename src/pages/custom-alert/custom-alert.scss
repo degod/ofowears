@@ -1,0 +1,17 @@
+page-custom-alert {
+	ion-content{
+		/*background-image: url(../assets/imgs/success.gif) !important;
+		background-size: contain !important;
+		background-position: center !important;
+		background-repeat: no-repeat !important;*/
+		text-align: center !important;
+	}
+	ion-content img{
+		margin: auto !important;
+		margin-top: 15vh !important;
+	}
+	ion-content button{
+		min-width: 130px !important;
+		border-radius: 25px !important;
+	}
+}

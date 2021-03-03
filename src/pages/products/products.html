@@ -1,0 +1,102 @@
+<!--
+  Generated template for the ProductsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+	<ion-navbar color="tertiary">
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>OFO Wears - Admin</ion-title>
+	</ion-navbar>
+</ion-header>
+<!-- 5gRGEjHl[d -->
+<ion-content padding (swipe)="swipeDirect($event)">
+	<div *ngIf="submittedInfo==false">
+		<ion-item>
+			<ion-label color="primary" floating>Product Name</ion-label>
+			<ion-input [(ngModel)]="pName"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label>Categories</ion-label>
+			<ion-select [(ngModel)]="pCategory">
+				<ion-option value="Baby Boys">Baby Boys</ion-option>
+				<ion-option value="Baby Girls">Baby Girls</ion-option>
+				<ion-option value="Unisex">Unisex</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary" floating>Short Description</ion-label>
+			<ion-textarea [(ngModel)]="pShort"></ion-textarea>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary" floating>Long Description</ion-label>
+			<ion-textarea [(ngModel)]="pLong"></ion-textarea>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary" floating>Additional Information</ion-label>
+			<ion-textarea [(ngModel)]="pAddInfo"></ion-textarea>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary" floating>Product Price</ion-label>
+			<ion-input [(ngModel)]="pPrice" type="number"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label color="primary" floating>Best Price</ion-label>
+			<ion-input [(ngModel)]="pBargain" type="number"></ion-input>
+		</ion-item>
+		<ion-item no-lines text-center>
+			<button ion-button (click)="submitInfo()">Add Product</button>
+		</ion-item>
+	</div>
+
+  	<div *ngIf="submittedInfo==true">
+		<ion-item>
+			<ion-row>
+				<ion-col col-6>
+					<img src="{{imageFileName1}}" *ngIf="imageFileName1" height="120"/>
+				</ion-col>
+				<ion-col col-6 text-center>
+					<button ion-button color="secondary" (click)="getImage(1)">
+						<ion-icon class="uploadIcon" name="ios-image"></ion-icon>&nbsp;
+						<ion-icon class="uploadIcon" name="ios-cloud-upload"></ion-icon>
+					</button>
+				</ion-col>
+			</ion-row>
+		</ion-item>
+		<ion-item>
+			<ion-row>
+				<ion-col col-6>
+					<img src="{{imageFileName2}}" *ngIf="imageFileName2" height="120"/>
+				</ion-col>
+				<ion-col col-6 text-center>
+					<button ion-button color="secondary" (click)="getImage(2)">
+						<ion-icon class="uploadIcon" name="ios-image"></ion-icon>&nbsp;
+						<ion-icon class="uploadIcon" name="ios-cloud-upload"></ion-icon>
+					</button>
+				</ion-col>
+			</ion-row>
+		</ion-item>
+		<ion-item>
+			<ion-row>
+				<ion-col col-6>
+					<img src="{{imageFileName3}}" *ngIf="imageFileName3" height="120"/>
+				</ion-col>
+				<ion-col col-6 text-center>
+					<button ion-button color="secondary" (click)="getImage(3)">
+						<ion-icon class="uploadIcon" name="ios-image"></ion-icon>&nbsp;
+						<ion-icon class="uploadIcon" name="ios-cloud-upload"></ion-icon>
+					</button>
+				</ion-col>
+			</ion-row>
+		</ion-item>
+	</div>
+</ion-content>
+
+<ion-footer>
+	<button ion-button block color="tertiary" (click)="navCtrl.setRoot('AdminPage')">
+		Back
+	</button>
+</ion-footer>

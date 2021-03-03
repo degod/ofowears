@@ -1,0 +1,93 @@
+page-productdetail {
+	.thumbnails{
+		height: 70px;
+		width: 70px;
+		/*border: 1px solid #da7979;*/
+		border: 1px solid #ccc;
+		background-size: cover !important;
+		background-position: center !important;
+		background-repeat: no-repeat !important;
+		margin: 5px;
+	}
+	.display{
+		height: 220px;
+		/*border: 1px solid #da7979;*/
+		/*border: 1px solid #ccc;*/
+		background-size: cover !important;
+		background-position: center !important;
+		background-repeat: no-repeat !important;
+		margin: 5px;
+	}
+	.toTitle{
+		font-weight: bold !important;
+	}
+	.toBody{
+		/*float: right;*/
+	}
+	.cartCount{
+		font-size: 10px;
+		margin-left: -3px
+	}
+	h3, h6{
+		font-weight: 200 !important;
+	}
+	button{
+		border-radius: 25px !important;
+	}
+	ion-item{
+		padding: 0px !important;
+		margin-top: -8px !important;
+	}
+	ion-item input{
+		width: 35%;
+		height: 40px;
+		border: 1px solid #ccc;
+		font-size: 16px;
+		text-align: center;
+		margin-top: -8px !important;
+	}
+	ion-item ion-icon{
+		padding: 10px !important;
+		text-align: center !important;
+	}
+	ion-header ion-item{
+		padding: initial !important;
+		margin-top: initial !important;
+	}
+	ion-header ion-item input{
+		width: initial;
+		height: initial;
+		border: initial;
+		font-size: initial;
+		text-align: initial;
+		margin-top: initial !important;
+	}
+	ion-header ion-item ion-icon{
+		padding: initial !important;
+		text-align: initial !important;
+	}
+	ion-item .iconRight{
+		width: 33%;
+		background-color: #ccc !important;
+		border-radius: 0 3px 3px 0 !important;
+		margin: 0 0 0 -5px !important;
+	}
+	ion-item .iconLeft{
+		width: 33%;
+		background-color: #ccc !important;
+		border-radius: 3px 0 0 3px !important;
+		margin: 0 -5px 0 0 !important;
+	}
+	ion-list ion-item h2{
+		padding-top: 5px !important;
+		padding-bottom: 5px !important;
+		font-weight: bolder !important;
+	}
+	ion-list ion-item h2 ion-icon{
+		float: right !important;
+		margin-top: -10px !important;
+	}
+	ion-list ion-item div{
+		font-size: 13px !important;
+	}
+}

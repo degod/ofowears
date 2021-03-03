@@ -1,0 +1,122 @@
+<!--
+  Generated template for the HomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+	<ion-fab top right>
+	    <button ion-fab mini color="wine" (click)="visitCart()">
+	      <ion-icon name="ios-cart">
+  			<span class="cartCount">{{cartLen}}</span>
+	      </ion-icon>
+	    </button>
+	</ion-fab>
+  	<ion-navbar color="tertiary">
+    	<button ion-button menuToggle>
+      		<ion-icon name="menu"></ion-icon>
+    	</button>
+    	<ion-title>OFO Wears Shop</ion-title>
+  	</ion-navbar>
+	<ion-item>
+		<ion-input type="search" placeholder="Search for products..."></ion-input>
+		<ion-icon name="md-search" item-end></ion-icon>
+	</ion-item>
+</ion-header>
+
+<ion-content style="background-color:#f6f6f6">
+  	<div class="sliderLoad" [style.background-image]="'url(assets/imgs/loading3.gif)'" 
+  	   [hidden]="sliderLoad == false">
+  	</div>
+  	<ion-slides autoplay="4000" loop="true" speed="500" pager="true" 
+  			   *ngIf="sliderImgs && sliderImgs.length" #slides>
+	    <ion-slide [ngStyle]="{'background-image':'url('+ROOT+s.img+')'}" 
+	    		   *ngFor="let s of sliderImgs">
+		   <div id="slideDetails">
+			   <h2>{{s.lrg}}</h2>
+			   <h5>{{s.sml}}</h5>
+			</div>
+	    </ion-slide>
+  	</ion-slides>
+  
+  <h2 class="categoryTitle">Unisex Wears</h2>
+  <div class="categoryLane">
+  	<div *ngIf="!unisex || !unisex.length">
+	    <div class="tabCell" *ngFor="let p of products">
+	      <ion-card [hidden]="p.brand != 'None'">
+	        <ion-card-content>
+	          <h4>Loading</h4><br>
+	          <span>Please wait...</span>
+	          <img src="{{p.image}}"/>
+	        </ion-card-content>
+	      </ion-card>
+	    </div>
+    </div>
+    <div *ngIf="unisex && unisex.length">
+	    <div class="tabCell" *ngFor="let w of unisex" (click)="details(w)">
+	      <ion-card>
+	        <ion-card-content>
+	          <h4>{{ellipsis(w.p_name, 15, "...")}}</h4><br>
+	          <span *ngIf="w.p_bargain != w.p_price" style="color:#da7979;text-decoration:line-through">{{w.p_price | currency : "₦"}}</span> 
+	          <span>{{w.p_bargain | currency : "₦"}}</span>
+	          <img src="{{ROOT+w.p_img_a}}"/>
+	        </ion-card-content>
+	      </ion-card>
+	    </div>
+    </div>
+  </div>
+
+  <h2 class="categoryTitle">Baby Boys Wears</h2>
+  <div class="categoryLane">
+  	<div *ngIf="!boys || !boys.length">
+	    <div class="tabCell" *ngFor="let p of products">
+	      <ion-card [hidden]="p.brand != 'None'">
+	        <ion-card-content>
+	          <h4>Loading</h4><br>
+	          <span>Please wait...</span>
+	          <img src="{{p.image}}"/>
+	        </ion-card-content>
+	      </ion-card>
+	    </div>
+    </div>
+    <div *ngIf="boys && boys.length">
+	    <div class="tabCell" *ngFor="let w of boys" (click)="details(w)">
+	      <ion-card>
+	        <ion-card-content>
+	          <h4>{{ellipsis(w.p_name, 15, "...")}}</h4><br>
+	          <span *ngIf="w.p_bargain != w.p_price" style="color:#da7979;text-decoration:line-through">{{w.p_price | currency : "₦"}}</span> 
+	          <span>{{w.p_bargain | currency : "₦"}}</span>
+	          <img src="{{ROOT+w.p_img_a}}"/>
+	        </ion-card-content>
+	      </ion-card>
+	    </div>
+    </div>
+  </div>
+
+  <h2 class="categoryTitle">Baby Girls Wears</h2>
+  <div class="categoryLane">
+  	<div *ngIf="!girls || !girls.length">
+	    <div class="tabCell" *ngFor="let p of products">
+	      <ion-card [hidden]="p.brand != 'None'">
+	        <ion-card-content>
+	          <h4>Loading</h4><br>
+	          <span>Please wait...</span>
+	          <img src="{{p.image}}"/>
+	        </ion-card-content>
+	      </ion-card>
+	    </div>
+    </div>
+    <div *ngIf="girls && girls.length">
+	    <div class="tabCell" *ngFor="let w of girls" (click)="details(w)">
+	      <ion-card>
+	        <ion-card-content>
+	          <h4>{{ellipsis(w.p_name, 15, "...")}}</h4><br>
+	          <span *ngIf="w.p_bargain != w.p_price" style="color:#da7979;text-decoration:line-through">{{w.p_price | currency : "₦"}}</span> 
+	          <span>{{w.p_bargain | currency : "₦"}}</span>
+	          <img src="{{ROOT+w.p_img_a}}"/>
+	        </ion-card-content>
+	      </ion-card>
+	    </div>
+    </div>
+  </div>
+</ion-content>

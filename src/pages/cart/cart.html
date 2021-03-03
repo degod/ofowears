@@ -1,0 +1,129 @@
+<!--
+  Generated template for the CartPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+	<ion-navbar color="tertiary">
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>OFO Wears - Cart</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<h1 *ngIf="cart.length == 0" align="center">
+		<br/>No item yet!<br/><br/>
+		<div ion-button (click)="home()" color="wine">
+			<img src="assets/imgs/boutique.png" height="30px">
+			&nbsp;&nbsp;&nbsp;Visit our boutique
+		</div>
+	</h1>
+	<div *ngIf="cart.length > 0">
+		<h5 class="h3Info" *ngIf="cart.length == 1">You have an item in your cart</h5>
+		<h5 class="h3Info" *ngIf="cart.length > 1">You have {{cart.length}} items in your cart</h5>
+		<ion-row *ngFor="let p of cart" (swipe)="deleteProd(p)">
+			<ion-col col-3>
+				<img src="{{ROOT+p.p_img_a}}" width="100%">
+			</ion-col>
+			<ion-col col-9>
+				<h5>
+					<ion-icon name="ios-trash-outline" icon-right (click)="deleteProd(p)"></ion-icon> 
+					{{p.p_name}}
+				</h5>
+				<ion-item>
+					<ion-icon name="md-remove" icon-left class="iconLeft" (click)="product(p)"></ion-icon>
+					<input type="number" value="{{p.p_qty}}"/>
+					<ion-icon name="md-add" icon-right class="iconRight" (click)="product(p)"></ion-icon> 
+					× 
+					<span>{{p.p_bargain | currency : "₦"}}</span>
+					<h6>{{p.p_bargain*p.p_qty | currency : "₦"}}</h6>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-12>
+				<h5>
+					CART TOTAL:
+					<span>{{cartTotal | currency : "₦"}}</span>
+				</h5>
+				<marquee scrollamount="3">
+					For payment of ₦20,000 and below, Pay-on-delivery option is available.
+				</marquee>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-12 style="text-align:center">
+				<div>
+					<select [(ngModel)]="payChoice" *ngIf="cartTotal <= 20000">
+						<option value="0">- Choose payment method -</option>
+						<option value="POD">Pay on delivery</option>
+						<option value="PS">Pay from your credit card</option>
+					</select>
+					<select [(ngModel)]="payChoice" *ngIf="cartTotal > 20000">
+						<option value="0">- Choose payment method -</option>
+						<option value="PS">Pay from your credit card</option>
+					</select>
+					<div *ngIf="payChoice != '0'" padding style="border-radius:12px;border:1px solid #ccc;margin-top:12px;">
+						<span>FREE SHIPPING is available for only Lagosians!</span><br><br>
+						<ion-item>
+							<ion-label>Country</ion-label>
+							<ion-select [(ngModel)]="country">
+								<ion-option value="{{c}}" *ngFor="let c of countries">
+									{{c}}
+								</ion-option>
+							</ion-select>
+						</ion-item>
+						<ion-item *ngIf="country == 'Nigeria'">
+							<ion-label>State</ion-label>
+							<ion-select [(ngModel)]="state">
+								<ion-option value="{{s}}" *ngFor="let s of states">
+									{{s}}
+								</ion-option>
+							</ion-select>
+						</ion-item>
+						<ion-item>
+							<ion-label color="primary" stacked>City</ion-label>
+							<ion-input type="text" placeholder="City" 
+										[(ngModel)]="city"></ion-input>
+						</ion-item>
+						<ion-item>
+							<ion-label color="primary" stacked>Landmark</ion-label>
+							<ion-input type="text" placeholder="Landmark" 
+										[(ngModel)]="landmark"></ion-input>
+						</ion-item>
+						<ion-item>
+							<ion-label color="primary" stacked>Full Name</ion-label>
+							<ion-input type="text" placeholder="Full Name" 
+										[(ngModel)]="fullname"></ion-input>
+						</ion-item>
+						<ion-item>
+							<ion-label color="primary" stacked>Email</ion-label>
+							<ion-input type="email" placeholder="Email" 
+										[(ngModel)]="email"></ion-input>
+						</ion-item>
+						<ion-item>
+							<ion-label color="primary" stacked>Phone Number</ion-label>
+							<ion-input type="tel" placeholder="Phone Number" 
+										[(ngModel)]="phone"></ion-input>
+						</ion-item>
+					</div>
+					<button ion-button block color="wine" (click)="confirmOrder('1')" 
+							*ngIf="payChoice == 'POD'" [disabled]="city=='' || landmark=='' || fullname=='' || email=='' || phone=='' || (country=='Nigeria' && state=='Diaspora')">
+						Confirm Order
+					</button>
+					<button ion-button block color="wine" (click)="confirmOrder('2')" 
+							*ngIf="payChoice == 'PS'" [disabled]="city=='' || landmark=='' || fullname=='' || email=='' || phone=='' || (country=='Nigeria' && state=='Diaspora')">
+						Pay securely with your card
+					</button>
+				</div>
+			</ion-col>
+		</ion-row>
+	</div>
+</ion-content>
+
+<ion-footer>
+	<div align="center"></div>
+</ion-footer>

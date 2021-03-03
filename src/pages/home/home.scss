@@ -1,0 +1,66 @@
+page-home {
+	ion-slides, .sliderLoad{
+		height: 35% !important;
+		width: 100% !important;
+	}
+	ion-slide{
+		height: 100% !important;
+		width: 100% !important;
+		background-size: cover !important;
+		background-position: center !important;
+		background-repeat: no-repeat !important;
+	}
+	#slideDetails{
+		color: #fff;//#a37c05;//#ebb71a;
+		text-shadow: 
+				   -1px -1px 0 #4c1228,  
+				    1px -1px 0 #4c1228,
+				    -1px 1px 0 #4c1228,
+				     1px 1px 0 #4c1228;
+		/*background-image: url(../assets/imgs/transBG.png);*/
+	}
+	.swiper-pagination-bullet {
+		height: 2px !important;
+		border-radius: 1px !important;
+	}
+	.swiper-pagination-bullet-active {
+		background: #000 !important;
+		height: 2px !important;
+	}
+	.categoryLane{
+		overflow-x: scroll !important;
+	}
+	.tabCell{
+		display: table-cell !important;
+	}
+	.categoryLane div ion-card{
+		width: 140px !important;
+		height: 150px !important;
+		margin: 3px !important;
+	}
+	.categoryLane div ion-card ion-card-content h4{
+		display: inline;
+		white-space: nowrap;
+	}
+	.categoryLane div ion-card ion-card-content img{
+		height: 70%;
+		margin: auto !important;
+	}
+	.categoryLane div ion-card ion-card-content span{
+		text-transform: uppercase;
+		color: #7c7c7c;
+		font-size: 9px;
+	}
+	.categoryTitle{
+		margin-left: 10px !important;
+		font-size: 12px !important;
+		margin-bottom: 2px !important;
+		text-align: left !important;
+		color: #222 !important;
+		text-transform: uppercase !important;
+	}
+	.cartCount{
+		font-size: 10px;
+		margin-left: -3px
+	}
+}
